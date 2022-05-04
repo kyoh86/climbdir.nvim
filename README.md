@@ -1,3 +1,5 @@
+# This is alpha. It may be dropped without notice
+
 # climbdir.nvim
 
 A neovim lib-plugin to climb directory to search project root marker.
