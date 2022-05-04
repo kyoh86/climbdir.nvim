@@ -1,0 +1,7 @@
+backgroundfile-examples	backgroundfile.txt	/*backgroundfile-examples*
+backgroundfile-functions	backgroundfile.txt	/*backgroundfile-functions*
+backgroundfile.close_later()	backgroundfile.txt	/*backgroundfile.close_later()*
+backgroundfile.close_on_autocmd()	backgroundfile.txt	/*backgroundfile.close_on_autocmd()*
+backgroundfile.nvim	backgroundfile.txt	/*backgroundfile.nvim*
+backgroundfile.open()	backgroundfile.txt	/*backgroundfile.open()*
+backgroundfile.txt	backgroundfile.txt	/*backgroundfile.txt*
