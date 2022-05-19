@@ -45,11 +45,12 @@ end
 
 ---Create a marker to check the path matched by any of the matchers.
 ---@vararg climbdir.marker.Marker
+---@return climbdir.marker.Marker
 function M.one_of(...)
     ---@type climbdir.marker.Marker[]
     local markers = vim.tbl_flatten({ ... })
     if vim.tbl_isempty(markers) then
-        return false
+        return M.never
     end
     return function(path)
         for _, marker in ipairs(markers) do
@@ -63,10 +64,11 @@ end
 
 ---Create a marker to check the path matched by all of the matchers.
 ---@vararg climbdir.marker.Marker
+---@return climbdir.marker.Marker
 function M.all_of(...)
     local markers = vim.tbl_flatten({ ... })
     if vim.tbl_isempty(markers) then
-        return true
+        return M.always
     end
     return function(path)
         for _, marker in ipairs(markers) do
