@@ -16,6 +16,13 @@ local function climb(path, marker, opts)
     return climb(parent, marker, opts)
 end
 
+--- Climb up directories to find marker
+---@param start_path string @A path of the directory starting climb up from.
+---@param marker climbdir.marker.Marker @A marker function that checks a path which is matched or not
+---                     We can get a simple marker from climbdir.marker module.
+---@param opts {halt:function}? @A dictionary of options.
+---                     - halt (function): a function receives a path to halt climb-up.
+---@return string @Found ancestor path.
 function M.climb(start_path, marker, opts)
     vim.validate({
         marker = { marker, "function" },

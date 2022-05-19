@@ -1,5 +1,11 @@
 local M = {}
 
+---@alias climbdir.marker.Marker fun(path: string): boolean
+---@return boolean
+
+---Create a marker to check the directory has a directory with the name.
+---@param name string @Target directory name
+---@return climbdir.marker.Marker
 function M.has_directory(name)
     vim.validate({ name = { name, "string" } })
     return function(path)
@@ -7,6 +13,9 @@ function M.has_directory(name)
     end
 end
 
+---Create a marker to check the directory has a readable-file with the name.
+---@param name string @Target file name
+---@return climbdir.marker.Marker
 function M.has_readable_file(name)
     vim.validate({ name = { name, "string" } })
     return function(path)
@@ -14,6 +23,9 @@ function M.has_readable_file(name)
     end
 end
 
+---Create a marker to check the directory has a writable-file with the name.
+---@param name string @Target file name
+---@return climbdir.marker.Marker
 function M.has_writable_file(name)
     vim.validate({ name = { name, "string" } })
     return function(path)
@@ -21,6 +33,9 @@ function M.has_writable_file(name)
     end
 end
 
+---Create a marker to check the directory has any file with the glob.
+---@param pattern string @Target file glob pattern
+---@return climbdir.marker.Marker
 function M.glob(pattern)
     vim.validate({ pattern = { pattern, "string" } })
     return function(path)
@@ -28,7 +43,10 @@ function M.glob(pattern)
     end
 end
 
+---Create a marker to check the path matched by any of the matchers.
+---@vararg climbdir.marker.Marker
 function M.one_of(...)
+    ---@type climbdir.marker.Marker[]
     local markers = vim.tbl_flatten({ ... })
     if vim.tbl_isempty(markers) then
         return false
@@ -43,6 +61,8 @@ function M.one_of(...)
     end
 end
 
+---Create a marker to check the path matched by all of the matchers.
+---@vararg climbdir.marker.Marker
 function M.all_of(...)
     local markers = vim.tbl_flatten({ ... })
     if vim.tbl_isempty(markers) then
@@ -58,11 +78,13 @@ function M.all_of(...)
     end
 end
 
-function M.never()
+---Create a marker to deny anything.
+function M.never(_)
     return false
 end
 
-function M.always()
+---Create a marker to accept anything.
+function M.always(_)
     return true
 end
 
