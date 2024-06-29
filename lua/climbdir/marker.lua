@@ -48,7 +48,7 @@ end
 ---@return climbdir.marker.Marker
 function M.one_of(...)
     ---@type climbdir.marker.Marker[]
-    local markers = vim.tbl_flatten({ ... })
+    local markers = vim.iter({ ... }):flatten():totable()
     if vim.tbl_isempty(markers) then
         return M.never
     end
@@ -66,7 +66,7 @@ end
 ---@vararg climbdir.marker.Marker
 ---@return climbdir.marker.Marker
 function M.all_of(...)
-    local markers = vim.tbl_flatten({ ... })
+    local markers = vim.iter({ ... }):flatten():totable()
     if vim.tbl_isempty(markers) then
         return M.always
     end
