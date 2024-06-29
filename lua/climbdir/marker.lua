@@ -39,7 +39,8 @@ end
 function M.glob(pattern)
     vim.validate({ pattern = { pattern, "string" } })
     return function(path)
-        return vim.fn.empty(vim.fn.glob(path .. "/" .. pattern)) == 0
+        local fullpattern = path .. "/" .. pattern
+        return vim.fn.empty(vim.fn.glob(vim.fn.has("win32") and pattern:gsub("/", "\\") or pattern)) == 0
     end
 end
 
