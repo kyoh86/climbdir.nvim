@@ -80,6 +80,15 @@ function M.all_of(...)
   end
 end
 
+---Create a inverted marker.
+---@param marker climbdir.marker.Marker
+---@return climbdir.marker.Marker
+function M.not_of(marker)
+  return function(path)
+    return not marker(path)
+  end
+end
+
 ---Create a marker to deny anything.
 function M.never(_)
   return false
