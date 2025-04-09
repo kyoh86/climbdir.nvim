@@ -7,7 +7,7 @@ local M = {}
 ---@param name string @Target directory name
 ---@return climbdir.marker.Marker
 function M.has_directory(name)
-  vim.validate({ name = { name, "string" } })
+  vim.validate("name", name, "string")
   return function(path)
     return vim.fn.isdirectory(path .. "/" .. name) ~= 0
   end
@@ -17,7 +17,7 @@ end
 ---@param name string @Target file name
 ---@return climbdir.marker.Marker
 function M.has_readable_file(name)
-  vim.validate({ name = { name, "string" } })
+  vim.validate("name", name, "string")
   return function(path)
     return vim.fn.filereadable(path .. "/" .. name) ~= 0
   end
@@ -27,7 +27,7 @@ end
 ---@param name string @Target file name
 ---@return climbdir.marker.Marker
 function M.has_writable_file(name)
-  vim.validate({ name = { name, "string" } })
+  vim.validate("name", name, "string")
   return function(path)
     return vim.fn.filewritable(path .. "/" .. name) ~= 0
   end
@@ -37,7 +37,7 @@ end
 ---@param pattern string @Target file glob pattern
 ---@return climbdir.marker.Marker
 function M.glob(pattern)
-  vim.validate({ pattern = { pattern, "string" } })
+  vim.validate("pattern", pattern, "string")
   return function(path)
     return vim.fn.empty(vim.fn.glob(path .. "/" .. pattern)) == 0
   end

@@ -31,11 +31,9 @@ end
 ---                     - halt (function): a function receives a path to halt climb-up.
 ---@return string|nil @Found ancestor path.
 function M.climb(start_path, marker, opts)
-  vim.validate({
-    start_path = { start_path, "string" },
-    marker = { marker, "function" },
-    opts = { opts, "table", true },
-  })
+  vim.validate("start_path", start_path, "string")
+  vim.validate("marker", marker, "function")
+  vim.validate("opts", opts, "table", true)
   return climb(start_path, marker, opts or {})
 end
 
